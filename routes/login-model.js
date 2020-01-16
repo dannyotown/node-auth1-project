@@ -22,9 +22,9 @@ async function loginUser(user) {
   const userFind = await findBy(UserName);
   const passwordValid = await bcrypt.compare(Password, userFind.Password);
   if (userFind && passwordValid) {
-    return { Success: "Login Successful" };
+    return { success: "User Found" };
   } else {
-    return { Fail: "Login Failed" };
+    return { fail: "none shall pass ye hacker man" };
   }
 }
 

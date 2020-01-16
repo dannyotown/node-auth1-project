@@ -15,8 +15,7 @@ router.post(`/register`, async (req, res) => {
 });
 router.post(`/login`, async (req, res) => {
   try {
-    const { loginMessage } = await userModel.loginUser(req.body);
-    res.status(204).send(loginMessage);
+    res.status(200).send(await userModel.loginUser(req.body));
   } catch (e) {
     console.log(e);
   }
