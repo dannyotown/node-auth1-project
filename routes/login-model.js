@@ -8,8 +8,7 @@ function getUsers() {
 function findBy(username) {
   return db("users")
     .select("*")
-    .where("UserName", username)
-    .first();
+    .where("UserName", username);
 }
 async function registerUser(user) {
   user.Password = await bcrypt.hash(user.Password, 14);
@@ -17,15 +16,4 @@ async function registerUser(user) {
   return getUsers();
 }
 
-async function loginUser(user) {
-  const { UserName, Password } = user;
-  const userFind = await findBy(UserName);
-  const passwordValid = await bcrypt.compare(Password, userFind.Password);
-  if (userFind && passwordValid) {
-    return { success: "User Found" };
-  } else {
-    return { fail: "none shall pass ye hacker man" };
-  }
-}
-
-module.exports = { getUsers, registerUser, loginUser };
+module.exports = { getUsers, registerUser, findBy };
