@@ -12,6 +12,7 @@ router.post(`/register`, async (req, res) => {
     res.status(201).send(await userModel.registerUser(req.body));
   } catch (e) {
     console.log(e);
+    res.status(404).json({ error: "Registration failed" });
   }
 });
 router.post(`/login`, async (req, res) => {
@@ -27,6 +28,7 @@ router.post(`/login`, async (req, res) => {
     }
   } catch (e) {
     console.log(e);
+    res.status(401).json({ error: "Auth Failed" });
   }
 });
 module.exports = router;
